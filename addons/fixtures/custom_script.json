@@ -1,0 +1,68 @@
+[
+ {
+  "docstatus": 0,
+  "doctype": "Custom Script",
+  "dt": "Customer",
+  "modified": "2020-07-14 11:40:19.514776",
+  "name": "Customer-Client",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null,
+  "script": "cur_frm.cscript.custom_full_name = function(doc){\r\n\tif(doc.full_name){\r\n\t\tdoc.full_name = doc.full_name.charAt(0).toUpperCase() + doc.full_name.slice(1)\r\n\t\trefresh_field(\"full_name\")\r\n\t}\r\n}"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Custom Script",
+  "dt": "Sales Invoice",
+  "modified": "2021-09-20 09:44:54.754006",
+  "name": "Sales Invoice-Client",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null,
+  "script": "frappe.ui.form.on('Sales Invoice', {\n\trefresh(frm) {\n\t\t// your code here\n\t},\n\t\n\tvalidate(frm) {\n\t    // get taxes and charges\n\t\tlet tax = 0\n\t\tlet charges = 0\n\t\tlet allTabTax = cur_frm.doc.taxes\n\t\tif (allTabTax) {\n\t\t    for (let i = 0; i < allTabTax.length; i++) {\n\t\t        if (allTabTax[i].charge_type == \"On Net Total\") {\n\t\t            tax += allTabTax[i].base_tax_amount\n\t\t        } else {\n\t\t            charges += allTabTax[i].base_tax_amount\n\t\t        }\n\t\t    }\n\t\t    cur_frm.set_value(\"total_tax\", tax)\n\t\t    cur_frm.set_value(\"total_char\", charges)\n\t\t    \n\t\t}\n\t}\n})\ncur_frm.add_fetch('tanda_tangan',  'employee_name',  'nama_tanda_tangan');"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Custom Script",
+  "dt": "Form Teknisi",
+  "modified": "2020-11-27 15:30:35.603746",
+  "name": "Form Teknisi-Client",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null,
+  "script": "cur_frm.cscript.custom_nominal = function(doc){\n\tif(doc.nominal){\n\t\tdoc.komisi = doc.nominal * 30 /100\n\t\trefresh_field(\"komisi\")\n\t}\n}\n\ncur_frm.cscript.custom_nominal = function(doc){\n\tif(doc.nominal){\n\t\tdoc.komisi_teknisi = doc.nominal * 30 /100\n\t\trefresh_field(\"komisi_teknisi\")\n\t\t\n\t\tdoc.komisi_perusahaan = doc.nominal * 70 /100\n\t\trefresh_field(\"komisi_perusahaan\")\n\t}\n}\n\n\ncur_frm.cscript.custom_validate = function(doc, cdt, cdn){\n\tif(doc.rincian_pengeluaran){\n\t    var total_biaya = 0;\n\t    $.each(doc.rincian_pengeluaran,  function(i,  d) {\n            \n            d.amount = d.qty * d.nominal;\n            total_biaya += d.amount;\n        });\n\t    \n\t\tdoc.total_biaya = total_biaya;\n\t\trefresh_field(\"rincian_pengeluaran\");\n\t\trefresh_field(\"total_biaya\");\n\t}\n}\n\nfrappe.ui.form.on('Form Teknisi',  {\n    refresh: function(frm) {\n        // use the __islocal value of doc,  to check if the doc is saved or not\n        if(frm.doc.tipe_dokumen == \"SPK\"){\n        \tfrm.set_df_property('tabel_nama_teknisi',  'read_only',  1);\n        } else {\n        \tfrm.set_df_property('tabel_nama_teknisi',  'read_only',  0);\n        }\n\n        refresh_field(\"tabel_nama_teknisi\");\n\n    },\n    tipe_dokumen: function(frm) {\n        // use the __islocal value of doc,  to check if the doc is saved or not\n        if(frm.doc.tipe_dokumen == \"SPK\"){\n        \tfrm.set_df_property('tabel_nama_teknisi',  'read_only',  1);\n        } else {\n        \tfrm.set_df_property('tabel_nama_teknisi',  'read_only',  0);\n        }\n\n        refresh_field(\"tabel_nama_teknisi\");\n\n    },\n});\n\n\n"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Custom Script",
+  "dt": "Lead",
+  "modified": "2021-05-10 12:13:41.229436",
+  "name": "Lead-Client",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null,
+  "script": "\r\ncur_frm.fields.forEach(function(l){ \r\n\tif(!cur_frm.doc.__islocal){\r\n\t\tif (l.df.fieldname != \"progress_follow_up\" && l.df.fieldname != \"hasil\" && l.df.fieldname != \"alasan_no_deal\"){\r\n\t\t    console.log(frappe.user)\r\n\t\t    if(frappe.user.has_role(\"Staff Sales\") && !frappe.user.has_role(\"Administrator\")){\r\n\t\t\t\tcur_frm.set_df_property(l.df.fieldname, \"read_only\", 1);\r\n\t\t\t} \r\n\t\t}\r\n\r\n\t}\r\n})\r\n\r\n\r\n// cur_frm.fields.forEach(function(l){ \r\n// \tif(!cur_frm.doc.__islocal){\r\n// \t\tif (l.df.fieldname != \"lead_name\" \r\n// \t\t\t|| l.df.fieldname == \"lead_owner\"\r\n// \t\t\t|| l.df.fieldname == \"company_name\" \r\n// \t\t\t|| l.df.fieldname == \"status\"  \r\n// \t\t\t|| l.df.fieldname == \"email_id\"  \r\n// \t\t\t|| l.df.fieldname == \"gender\"  \r\n// \t\t\t|| l.df.fieldname == \"nomor_whatsapp_l\"  \r\n// \t\t\t|| l.df.fieldname == \"kota\"  \r\n// \t\t\t|| l.df.fieldname == \"sales_yang_menghandle\" \r\n// \t\t\t|| l.df.fieldname == \"source\"\r\n// \t\t\t|| l.df.fieldname == \"posting_date\"\r\n// \t\t){\r\n// \t\t    console.log(frappe.user)\r\n// \t\t\tif(!frappe.user.has_role(\"Gatekeeper\")){\r\n// \t\t\t\tcur_frm.set_df_property(l.df.fieldname, \"read_only\", 1);\r\n// \t\t\t} \r\n// \t\t}\r\n\r\n// \t}\r\n// })"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Custom Script",
+  "dt": "Sales Order",
+  "modified": "2021-09-15 15:12:06.324963",
+  "name": "Sales Order-Client",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null,
+  "script": "frappe.ui.form.on('Sales Order', {\n\trefresh(frm) {\n\t\tfrm.set_query('nama_teknisi', function(doc) {\n\t\t\treturn {\n\t\t\t\tquery: \"addons.custom_method_hooks.get_nama_teknisi\"\n\t\t\t}\n\t\t});\n\t\t\n\t\t// get taxes and charges\n\t\t\n\t},\n\t\n\tvalidate(frm) {\n\t    // get taxes and charges\n\t\tlet tax = 0\n\t\tlet charges = 0\n\t\tlet allTabTax = cur_frm.doc.taxes\n\t\tif (allTabTax) {\n\t\t    for (let i = 0; i < allTabTax.length; i++) {\n\t\t        if (allTabTax[i].charge_type == \"On Net Total\") {\n\t\t            tax += allTabTax[i].base_tax_amount\n\t\t        } else {\n\t\t            charges += allTabTax[i].base_tax_amount\n\t\t        }\n\t\t    }\n\t\t    cur_frm.set_value(\"total_tax\", tax)\n\t\t    cur_frm.set_value(\"total_char\", charges)\n\t\t    \n\t\t}\n\t}\n})\ncur_frm.add_fetch('nama_teknisi',  'designation',  'designation');\ncur_frm.add_fetch('nama_teknisi',  'employee_name',  'nama_lengkap_teknisi');"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Custom Script",
+  "dt": "Journal Entry",
+  "modified": "2021-09-09 12:43:10.527171",
+  "name": "Journal Entry-Client",
+  "parent": null,
+  "parentfield": null,
+  "parenttype": null,
+  "script": "frappe.ui.form.on('Journal Entry', {\n\trefresh(frm) {\n\t   // if (!cur_frm.doc.finance_book) {\n\t   //     let date = new Date();\n    //         let year = date.getFullYear();\n    //         console.log(cur_frm.doc.company)\n    //         cur_frm.add_fetch('company','default_finance_book','finance_book')\n\t   //    // cur_frm.set_value(\"finance_book\", year)\n\t   // }\n\t}\n})"
+ }
+]

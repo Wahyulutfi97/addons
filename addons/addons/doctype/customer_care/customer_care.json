@@ -1,0 +1,234 @@
+{
+ "autoname": "CC-.######",
+ "creation": "2020-05-14 16:45:17.187327",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "posting_date",
+  "pilihan_customer",
+  "customer",
+  "customer_name",
+  "sales_order_table",
+  "get_data_so",
+  "sb_01",
+  "kategori_barang",
+  "nama",
+  "kota",
+  "alamat",
+  "cb_01",
+  "tanggal",
+  "no_hp",
+  "email",
+  "sb_03",
+  "item_customer_care",
+  "sb_04",
+  "fu_table",
+  "sb_04b",
+  "fu_table_lama",
+  "sb_05",
+  "keterangan_penawaran",
+  "status_final",
+  "alasan_tidak_repeat_order",
+  "alasan",
+  "resume_hasil_follow_up",
+  "hasil_fu",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "pilihan_customer",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Pilihan Customer",
+   "options": "Customer Baru\nCustomer Lama"
+  },
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "label": "Customer",
+   "options": "Customer",
+   "reqd": 1
+  },
+  {
+   "fieldname": "sb_01",
+   "fieldtype": "Section Break"
+  },
+  {
+   "depends_on": "eval:doc.pilihan_customer == \"Customer Baru\" || doc.pilihan_customer == \"Customer Lama\"",
+   "fieldname": "kategori_barang",
+   "fieldtype": "Select",
+   "label": "Kategori Barang",
+   "options": "Instalasi & Training\nTraining\nTanpa Instalasi"
+  },
+  {
+   "depends_on": "eval:doc.pilihan_customer == \"Customer Baru\" || doc.pilihan_customer == \"Customer Lama\"",
+   "fieldname": "tanggal",
+   "fieldtype": "Date",
+   "label": "Tanggal "
+  },
+  {
+   "fieldname": "nama",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Nama"
+  },
+  {
+   "fieldname": "kota",
+   "fieldtype": "Data",
+   "label": "Kota"
+  },
+  {
+   "fieldname": "alamat",
+   "fieldtype": "Small Text",
+   "label": "Alamat"
+  },
+  {
+   "fieldname": "no_hp",
+   "fieldtype": "Data",
+   "label": "No Hp"
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "Email"
+  },
+  {
+   "fieldname": "cb_01",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.pilihan_customer == \"Customer Baru\" || doc.pilihan_customer == \"Customer Lama\"",
+   "fieldname": "alasan",
+   "fieldtype": "Data",
+   "label": "Alasan"
+  },
+  {
+   "fieldname": "resume_hasil_follow_up",
+   "fieldtype": "Text",
+   "label": "Keterangan"
+  },
+  {
+   "fieldname": "sales_order_table",
+   "fieldtype": "Table",
+   "label": "Sales Order Table",
+   "options": "SO Customer Care"
+  },
+  {
+   "fieldname": "sb_03",
+   "fieldtype": "Section Break"
+  },
+  {
+   "depends_on": "eval:doc.pilihan_customer == \"Customer Baru\" || doc.pilihan_customer == \"Customer Lama\"",
+   "fieldname": "fu_table",
+   "fieldtype": "Table",
+   "label": "FU Table",
+   "options": "Follow Up Customer Care"
+  },
+  {
+   "depends_on": "eval:doc.pilihan_customer == \"Customer Lama1\"",
+   "fieldname": "item_customer_care",
+   "fieldtype": "Table",
+   "label": "Item Customer Care",
+   "options": "Item Customer Care"
+  },
+  {
+   "depends_on": "eval:doc.pilihan_customer == \"Customer Baru\" || doc.pilihan_customer == \"Customer Lama\"",
+   "fieldname": "sb_04",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "sb_05",
+   "fieldtype": "Section Break"
+  },
+  {
+   "depends_on": "eval:doc.pilihan_customer == \"Customer Lama1\"",
+   "fieldname": "keterangan_penawaran",
+   "fieldtype": "Select",
+   "label": "Keterangan Penawaran",
+   "options": "\nOffering\nNot Offering"
+  },
+  {
+   "depends_on": "eval:doc.pilihan_customer == \"Customer Lama1\"",
+   "fieldname": "status_final",
+   "fieldtype": "Select",
+   "label": "Status Final",
+   "options": "\nKomplain\nUncategory\nLead"
+  },
+  {
+   "depends_on": "eval:doc.pilihan_customer == \"Customer Lama1\"",
+   "fieldname": "alasan_tidak_repeat_order",
+   "fieldtype": "Small Text",
+   "label": "Alasan Tidak Repeat Order"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Customer Care",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "posting_date",
+   "fieldtype": "Date",
+   "label": "Posting Date"
+  },
+  {
+   "fieldname": "customer_name",
+   "fieldtype": "Data",
+   "label": "Customer Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "get_data_so",
+   "fieldtype": "Button",
+   "label": "Get Item SO",
+   "options": "get_data_so"
+  },
+  {
+   "fieldname": "hasil_fu",
+   "fieldtype": "Table",
+   "label": "Hasil FU",
+   "options": "Customer Care Table"
+  },
+  {
+   "depends_on": "eval:doc.pilihan_customer == \"Customer Lama1\"",
+   "fieldname": "sb_04b",
+   "fieldtype": "Section Break"
+  },
+  {
+   "depends_on": "eval:doc.pilihan_customer == \"Customer Lama1\"",
+   "fieldname": "fu_table_lama",
+   "fieldtype": "Table",
+   "label": "FU Table",
+   "options": "Follow Up Customer Care Lama"
+  }
+ ],
+ "is_submittable": 1,
+ "modified": "2021-12-23 10:57:58.175580",
+ "modified_by": "Administrator",
+ "module": "Addons",
+ "name": "Customer Care",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Script Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

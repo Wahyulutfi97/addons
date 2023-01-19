@@ -1,0 +1,118 @@
+{
+ "allow_import": 1,
+ "allow_rename": 1,
+ "autoname": "field:bidang_usaha_name",
+ "creation": "2022-06-30 15:26:48.157019",
+ "doctype": "DocType",
+ "document_type": "Setup",
+ "engine": "InnoDB",
+ "field_order": [
+  "bidang_usaha_name",
+  "lft",
+  "rgt",
+  "is_group",
+  "old_parent",
+  "parent_bidang_usaha"
+ ],
+ "fields": [
+  {
+   "fieldname": "lft",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "label": "Left",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "rgt",
+   "fieldtype": "Int",
+   "hidden": 1,
+   "label": "Right",
+   "no_copy": 1,
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "is_group",
+   "fieldtype": "Check",
+   "label": "Is Group"
+  },
+  {
+   "fieldname": "old_parent",
+   "fieldtype": "Link",
+   "label": "Old Parent",
+   "options": "Bidang Usaha"
+  },
+  {
+   "fieldname": "parent_bidang_usaha",
+   "fieldtype": "Link",
+   "label": "Parent Bidang Usaha",
+   "options": "Bidang Usaha"
+  },
+  {
+   "fieldname": "bidang_usaha_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Bidang Usaha Name",
+   "reqd": 1,
+   "unique": 1
+  }
+ ],
+ "icon": "fa fa-sitemap",
+ "is_tree": 1,
+ "modified": "2022-06-30 15:30:06.934990",
+ "modified_by": "Administrator",
+ "module": "Addons",
+ "name": "Bidang Usaha",
+ "nsm_parent_field": "parent_bidang_usaha",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Sales Manager"
+  },
+  {
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Sales User"
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "import": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Sales Master Manager",
+   "set_user_permissions": 1,
+   "share": 1,
+   "write": 1
+  },
+  {
+   "permlevel": 1,
+   "read": 1,
+   "role": "Sales Master Manager",
+   "write": 1
+  },
+  {
+   "permlevel": 1,
+   "read": 1,
+   "role": "Sales User"
+  },
+  {
+   "permlevel": 1,
+   "read": 1,
+   "role": "Sales Manager"
+  }
+ ],
+ "show_name_in_global_search": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC"
+}

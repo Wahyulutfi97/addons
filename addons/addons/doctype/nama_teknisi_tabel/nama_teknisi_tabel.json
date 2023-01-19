@@ -1,0 +1,37 @@
+{
+ "creation": "2020-10-13 10:52:52.166449",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "nama_teknisi_2",
+  "status"
+ ],
+ "fields": [
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "\nPenanggung Jawab\nAnggota"
+  },
+  {
+   "fieldname": "nama_teknisi_2",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Nama Teknisi",
+   "options": "Employee"
+  }
+ ],
+ "istable": 1,
+ "modified": "2021-12-15 14:26:07.433264",
+ "modified_by": "Administrator",
+ "module": "Addons",
+ "name": "Nama Teknisi Tabel",
+ "owner": "Administrator",
+ "permissions": [],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

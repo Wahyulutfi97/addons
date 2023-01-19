@@ -1,0 +1,21 @@
+{
+ "add_total_row": 0,
+ "creation": "2020-05-19 12:26:27.238999",
+ "disable_prepared_report": 0,
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Report",
+ "idx": 0,
+ "is_standard": "Yes",
+ "modified": "2020-05-19 12:28:42.660828",
+ "modified_by": "Administrator",
+ "module": "Addons",
+ "name": "Test FU new",
+ "owner": "Administrator",
+ "prepared_report": 0,
+ "query": "SELECT \r\n\t\ttcc.`tanggal`, \r\n\t\ttcc.`customer`, \r\n\t\ttcc.`kota`, \r\n\t\ttas.`address_line1`, \r\n\t\ttas.`address_line2`,\r\n\r\n\t\ttc.`mobile_no`, \r\n\t\ttc.`email_id`,\r\n\t\ttcc.`item_name`,\r\n\t\tIFNULL(fucc.`tanggal`,\"-\"),\r\n\t\tIFNULL(fucc.`status_fu`,\"-\"),\r\n\r\n\t\tIFNULL(fucc2.`tanggal`,\"-\"),\r\n\t\tIFNULL(fucc2.`status_fu`,\"-\"),\r\n\t\tIFNULL(fucc3.`tanggal`,\"-\"),\r\n\t\tIFNULL(fucc3.`status_fu`,\"-\"),\r\n\t\tIFNULL(fucc4.`tanggal`,\"-\"),\r\n\t\t\r\n\t\tIFNULL(fucc4.`status_fu`,\"-\"),\r\n\t\tIFNULL(fucc5.`tanggal`,\"-\"),\r\n\t\tIFNULL(fucc5.`status_fu`,\"-\"),\r\n\t\tIFNULL(tcc.`penerimaan`,\"-\"),\r\n\t\tIFNULL(tcc.`kondisi`,\"-\"),\r\n\t\tIFNULL(tcc.`service`,\"-\"),\r\n\t\tIFNULL(tcc.`respon`,\"-\"),\r\n\t\tIFNULL(tcc.`rekomendasi_deprintz`,\"-\"),\r\n\t\tIFNULL(tcc.`status_fu`,\"-\"),\r\n\t\tIFNULL(tcc.`alasan`,\"-\")\r\n\r\n\t\tFROM `tabCustomer Care` tcc \r\n\t\tJOIN `tabCustomer` tc ON tc.name = tcc.`customer`\r\n\r\n\t\tLEFT JOIN `tabDynamic Link` tdl ON tc.name = tdl.`link_name` AND  tdl.parenttype = \"Address\" AND tdl.link_doctype = \"Customer\"\r\n\t\tLEFT JOIN `tabAddress` tas ON tas.name = tdl.`parent`\r\n\r\n\t\tLEFT JOIN `tabFollow Up Customer Care` fucc ON fucc.parent = tcc.name AND fucc.`idx` = 1\r\n\t\tLEFT JOIN `tabFollow Up Customer Care` fucc2 ON fucc2.parent = tcc.name AND fucc2.`idx` = 2\r\n\t\tLEFT JOIN `tabFollow Up Customer Care` fucc3 ON fucc3.parent = tcc.name AND fucc3.`idx` = 3\r\n\t\tLEFT JOIN `tabFollow Up Customer Care` fucc4 ON fucc4.parent = tcc.name AND fucc4.`idx` = 4\r\n\t\tLEFT JOIN `tabFollow Up Customer Care` fucc5 ON fucc5.parent = tcc.name AND fucc5.`idx` = 5\r\n\r\n\t\tWHERE tcc.pilihan_customer = \"Customer Baru\"",
+ "ref_doctype": "Customer Care",
+ "report_name": "Test FU new",
+ "report_type": "Query Report",
+ "roles": []
+}

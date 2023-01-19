@@ -1,0 +1,57 @@
+{
+ "creation": "2021-03-30 12:01:26.399082",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "purpose",
+  "subject_email",
+  "body_email",
+  "recipients"
+ ],
+ "fields": [
+  {
+   "fieldname": "purpose",
+   "fieldtype": "Data",
+   "label": "Purpose"
+  },
+  {
+   "fieldname": "subject_email",
+   "fieldtype": "Data",
+   "label": "Subject Email"
+  },
+  {
+   "fieldname": "body_email",
+   "fieldtype": "Text",
+   "label": "Body Email"
+  },
+  {
+   "fieldname": "recipients",
+   "fieldtype": "Data",
+   "label": "Recipients",
+   "options": "Email"
+  }
+ ],
+ "modified": "2021-03-30 12:01:26.399082",
+ "modified_by": "Administrator",
+ "module": "Addons",
+ "name": "Document buat Notification Email",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

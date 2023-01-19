@@ -1,0 +1,169 @@
+{
+ "autoname": "FK-.######",
+ "creation": "2020-05-15 14:18:14.033444",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "posting_date",
+  "customer",
+  "nama",
+  "sales_order",
+  "kota",
+  "hp",
+  "tanggal_komplain",
+  "jenis_komplain",
+  "kategori_komplain",
+  "kronologi_komplain",
+  "solusi",
+  "alasan",
+  "pic_komplain",
+  "pihak_yang_terlibat",
+  "sla",
+  "tanggal_sla",
+  "komplain_selesai",
+  "penangan_teknisi",
+  "keterangan_penggantian",
+  "tanggal_selesai",
+  "saran_customer_care"
+ ],
+ "fields": [
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Customer",
+   "options": "Customer"
+  },
+  {
+   "fieldname": "sales_order",
+   "fieldtype": "Table",
+   "label": "Sales Order",
+   "options": "SO Form Komplain"
+  },
+  {
+   "fieldname": "kota",
+   "fieldtype": "Data",
+   "label": "Kota"
+  },
+  {
+   "fieldname": "hp",
+   "fieldtype": "Data",
+   "label": "HP"
+  },
+  {
+   "fieldname": "tanggal_komplain",
+   "fieldtype": "Date",
+   "label": "Tanggal Komplain"
+  },
+  {
+   "fieldname": "jenis_komplain",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Jenis Komplain",
+   "options": "HARD\nSOFT"
+  },
+  {
+   "fieldname": "kategori_komplain",
+   "fieldtype": "Data",
+   "label": "Kategori Komplain"
+  },
+  {
+   "fieldname": "kronologi_komplain",
+   "fieldtype": "Text",
+   "label": "Kronologi Komplain"
+  },
+  {
+   "fieldname": "solusi",
+   "fieldtype": "Select",
+   "label": "Solusi",
+   "options": "Pandu Online\nService ke Lokasi\nKirim Unit\nLainnya"
+  },
+  {
+   "fieldname": "pic_komplain",
+   "fieldtype": "Data",
+   "label": "PIC Komplain"
+  },
+  {
+   "fieldname": "pihak_yang_terlibat",
+   "fieldtype": "Data",
+   "label": "Pihak yang Terlibat"
+  },
+  {
+   "fieldname": "sla",
+   "fieldtype": "Select",
+   "label": "SLA",
+   "options": "\n1 Bulan (Komplain Mesin Besar)\n2 Minggu (Komplain Mesin Kecil)\n1 Minggu (Komplain Bisa Dipandu Tanpa Kunjungan)"
+  },
+  {
+   "fieldname": "tanggal_sla",
+   "fieldtype": "Date",
+   "label": "Tanggal SLA"
+  },
+  {
+   "fieldname": "komplain_selesai",
+   "fieldtype": "Select",
+   "label": "Komplain Selesai",
+   "options": "Tidak\nYa"
+  },
+  {
+   "fieldname": "penangan_teknisi",
+   "fieldtype": "Data",
+   "label": "Penangan Teknisi"
+  },
+  {
+   "fieldname": "keterangan_penggantian",
+   "fieldtype": "Data",
+   "label": "Keterangan Penggantian"
+  },
+  {
+   "fieldname": "tanggal_selesai",
+   "fieldtype": "Date",
+   "label": "Tanggal Selesai"
+  },
+  {
+   "fieldname": "saran_customer_care",
+   "fieldtype": "Data",
+   "label": "Saran Customer Care"
+  },
+  {
+   "fieldname": "posting_date",
+   "fieldtype": "Date",
+   "label": "Posting Date"
+  },
+  {
+   "depends_on": "eval:doc.solusi == \"Lainnya\"",
+   "fieldname": "alasan",
+   "fieldtype": "Text",
+   "label": "Alasan"
+  },
+  {
+   "fieldname": "nama",
+   "fieldtype": "Data",
+   "label": "Nama",
+   "read_only": 1
+  }
+ ],
+ "modified": "2020-10-19 10:50:45.398750",
+ "modified_by": "Administrator",
+ "module": "Addons",
+ "name": "Form Komplain",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

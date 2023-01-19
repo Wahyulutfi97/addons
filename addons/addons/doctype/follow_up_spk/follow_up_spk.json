@@ -1,0 +1,50 @@
+{
+ "creation": "2020-05-18 11:27:28.782091",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "tanggal",
+  "hasil_follow_up",
+  "ditampilkan",
+  "alasan"
+ ],
+ "fields": [
+  {
+   "fieldname": "tanggal",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Tanggal"
+  },
+  {
+   "fieldname": "hasil_follow_up",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Hasil Follow Up"
+  },
+  {
+   "fieldname": "ditampilkan",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Ditampilkan",
+   "options": "\nYes\nNo"
+  },
+  {
+   "fieldname": "alasan",
+   "fieldtype": "Text",
+   "in_list_view": 1,
+   "label": "Alasan"
+  }
+ ],
+ "istable": 1,
+ "modified": "2020-07-14 11:14:50.196194",
+ "modified_by": "Administrator",
+ "module": "Addons",
+ "name": "Follow Up SPK",
+ "owner": "Administrator",
+ "permissions": [],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

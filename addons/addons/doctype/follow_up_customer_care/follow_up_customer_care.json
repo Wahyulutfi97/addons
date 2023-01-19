@@ -1,0 +1,51 @@
+{
+ "creation": "2020-05-15 12:07:14.509616",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "tanggal",
+  "by",
+  "status_fu",
+  "hasil_follow_up"
+ ],
+ "fields": [
+  {
+   "fieldname": "tanggal",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Tanggal"
+  },
+  {
+   "fieldname": "by",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "By",
+   "options": "\nWA\nCall"
+  },
+  {
+   "fieldname": "status_fu",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status FU",
+   "options": "\nRead Only\nReplying\nAnswered\nNot Answered"
+  },
+  {
+   "fieldname": "hasil_follow_up",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Hasil Follow Up"
+  }
+ ],
+ "istable": 1,
+ "modified": "2020-05-15 12:07:14.509616",
+ "modified_by": "Administrator",
+ "module": "Addons",
+ "name": "Follow Up Customer Care",
+ "owner": "Administrator",
+ "permissions": [],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

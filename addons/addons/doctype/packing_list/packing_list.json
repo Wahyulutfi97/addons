@@ -1,0 +1,47 @@
+{
+ "creation": "2021-12-21 15:33:02.285045",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "mesin",
+  "item",
+  "qty"
+ ],
+ "fields": [
+  {
+   "columns": 3,
+   "fieldname": "mesin",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Mesin"
+  },
+  {
+   "columns": 2,
+   "fieldname": "item",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Item",
+   "translatable": 1
+  },
+  {
+   "columns": 2,
+   "fieldname": "qty",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Qty",
+   "translatable": 1
+  }
+ ],
+ "istable": 1,
+ "modified": "2022-02-07 09:47:28.014728",
+ "modified_by": "Administrator",
+ "module": "Addons",
+ "name": "Packing List",
+ "owner": "Administrator",
+ "permissions": [],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

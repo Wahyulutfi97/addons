@@ -1,0 +1,108 @@
+{
+ "creation": "2020-10-14 10:41:14.099613",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "employeee",
+  "service",
+  "respon",
+  "pnp",
+  "pemberian_informasi_2",
+  "kemampuan_komunikasi_2",
+  "kedisiplinan",
+  "troubleshoot_2",
+  "alasan",
+  "skor_2",
+  "rekomendasi_2",
+  "keterangan"
+ ],
+ "fields": [
+  {
+   "fieldname": "employeee",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Employee",
+   "options": "Employee"
+  },
+  {
+   "fieldname": "service",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Sikap",
+   "options": "\nSopan Ramah\nSopan Tidak Ramah\nTidak Sopan Tidak Ramah"
+  },
+  {
+   "fieldname": "respon",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Respon",
+   "options": "\nCepat\nLambat"
+  },
+  {
+   "fieldname": "alasan",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Alasan"
+  },
+  {
+   "fieldname": "pnp",
+   "fieldtype": "Select",
+   "label": "PnP",
+   "options": "\nMenguasai\nCukup Menguasai\nTidak Menguasai"
+  },
+  {
+   "fieldname": "pemberian_informasi_2",
+   "fieldtype": "Select",
+   "label": "Pemberian Informasi",
+   "options": "\nDetail Runtut\nDetail Tidak Runtut\nTidak Detail Tidak Runtut"
+  },
+  {
+   "fieldname": "kemampuan_komunikasi_2",
+   "fieldtype": "Select",
+   "label": "Kemampuan Komunikasi",
+   "options": "\nLancar Mudah Dipahami\nLancar Tidak Mudah Dipahami\nTidak Lancar"
+  },
+  {
+   "fieldname": "troubleshoot_2",
+   "fieldtype": "Select",
+   "label": "Troubleshoot",
+   "options": "\nMampu\nTidak Mampu"
+  },
+  {
+   "fieldname": "skor_2",
+   "fieldtype": "Select",
+   "label": "Skor",
+   "options": "\n1\n2\n3\n4\n5"
+  },
+  {
+   "fieldname": "kedisiplinan",
+   "fieldtype": "Select",
+   "label": "Kedisiplinan",
+   "options": "\nSesuai Jadwal\nMolor"
+  },
+  {
+   "fieldname": "keterangan",
+   "fieldtype": "Select",
+   "label": "Keterangan",
+   "options": "\nPuas\nKomplain"
+  },
+  {
+   "fieldname": "rekomendasi_2",
+   "fieldtype": "Select",
+   "label": "Rekomendasi",
+   "options": "\nBersedia\nTidak Bersedia"
+  }
+ ],
+ "istable": 1,
+ "modified": "2020-12-12 00:55:34.683743",
+ "modified_by": "Administrator",
+ "module": "Addons",
+ "name": "Customer Care Table",
+ "owner": "Administrator",
+ "permissions": [],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

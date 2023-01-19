@@ -1,0 +1,55 @@
+{
+ "creation": "2021-12-15 14:05:36.159361",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "kode_item",
+  "nama_item",
+  "qty",
+  "sn"
+ ],
+ "fields": [
+  {
+   "columns": 2,
+   "fieldname": "kode_item",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Kode Item",
+   "options": "Item"
+  },
+  {
+   "columns": 3,
+   "fetch_from": "kode_item.item_name",
+   "fieldname": "nama_item",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Item"
+  },
+  {
+   "columns": 2,
+   "fieldname": "qty",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Qty"
+  },
+  {
+   "columns": 2,
+   "fieldname": "sn",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "SN"
+  }
+ ],
+ "istable": 1,
+ "modified": "2021-12-15 14:22:14.510492",
+ "modified_by": "Administrator",
+ "module": "Addons",
+ "name": "Jenis Mesin",
+ "owner": "Administrator",
+ "permissions": [],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

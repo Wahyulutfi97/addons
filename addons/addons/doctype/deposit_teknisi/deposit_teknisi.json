@@ -1,0 +1,35 @@
+{
+ "creation": "2022-01-12 10:34:21.476510",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "biaya",
+  "dinas"
+ ],
+ "fields": [
+  {
+   "fieldname": "biaya",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Biaya"
+  },
+  {
+   "fieldname": "dinas",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Dinas"
+  }
+ ],
+ "istable": 1,
+ "modified": "2022-01-12 11:04:04.322167",
+ "modified_by": "Administrator",
+ "module": "Addons",
+ "name": "Deposit Teknisi",
+ "owner": "Administrator",
+ "permissions": [],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

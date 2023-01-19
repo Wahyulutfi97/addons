@@ -1,0 +1,29 @@
+{
+ "creation": "2020-05-15 12:05:38.485974",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "nomor_so"
+ ],
+ "fields": [
+  {
+   "fieldname": "nomor_so",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Nomor SO",
+   "options": "Sales Order"
+  }
+ ],
+ "istable": 1,
+ "modified": "2020-05-15 12:05:42.565292",
+ "modified_by": "Administrator",
+ "module": "Addons",
+ "name": "SO Customer Care",
+ "owner": "Administrator",
+ "permissions": [],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

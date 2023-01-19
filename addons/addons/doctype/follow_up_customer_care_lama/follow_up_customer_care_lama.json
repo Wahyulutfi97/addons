@@ -1,0 +1,44 @@
+{
+ "creation": "2021-11-10 11:22:03.460714",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "tanggal",
+  "by",
+  "status_fu"
+ ],
+ "fields": [
+  {
+   "fieldname": "tanggal",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Tanggal"
+  },
+  {
+   "fieldname": "by",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "By",
+   "options": "\nWA\nCall"
+  },
+  {
+   "fieldname": "status_fu",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status FU",
+   "options": "\nRead Only\nReplying\nAnswered\nNot Answered"
+  }
+ ],
+ "istable": 1,
+ "modified": "2021-11-10 11:22:03.460714",
+ "modified_by": "Administrator",
+ "module": "Addons",
+ "name": "Follow Up Customer Care Lama",
+ "owner": "Administrator",
+ "permissions": [],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

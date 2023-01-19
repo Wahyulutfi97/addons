@@ -1,0 +1,588 @@
+{
+ "autoname": "naming_series:",
+ "creation": "2020-05-13 12:19:38.995633",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "naming",
+  "posting_date",
+  "tipe_dokumen",
+  "penjadwalan_instalasi_dan_servis",
+  "get_penjadwalan",
+  "spk",
+  "tipe_spk",
+  "log_harian_teknisi",
+  "biaya_sparepart_tindakan",
+  "cb_00",
+  "customer",
+  "customer_name",
+  "sales_order",
+  "keterangan_form_ce",
+  "keterangan_penjadwalan",
+  "item_code",
+  "item_name",
+  "telepon",
+  "alamat_kota",
+  "kebutuhan_sparepart",
+  "jenis_mesin",
+  "packing_list",
+  "sb_spk",
+  "jadwal_instalasi_training",
+  "tanggal_awal_1",
+  "tanggal_akhir_1",
+  "jenis_pengerjaan",
+  "lainnya",
+  "tanggal_training_selesai",
+  "penanggung_jawab_instalasi",
+  "hasil_instalasi_training",
+  "troubleshooting",
+  "follow_up_spk",
+  "sb_servis",
+  "tanggal_penjadwalan_awal",
+  "tanggal_penjadwalan_akhir",
+  "jenis_pengerjaan_servis",
+  "lainnya_servis",
+  "nama_teknisi",
+  "done",
+  "keterangan_servis",
+  "sb_laporan_servis",
+  "tanggal_servis",
+  "nama_teknisi_servis",
+  "tindakan",
+  "nominal",
+  "komisi",
+  "komisi_teknisi",
+  "komisi_perusahaan",
+  "sb_form_ce",
+  "form_ce",
+  "get_data_ce",
+  "keterangan_ce",
+  "lainnya_2",
+  "transport",
+  "kebutuhan",
+  "kebutuhan_lainnya",
+  "rincian_estimasi_ce",
+  "total_biaya",
+  "total_biaya_ditambah_estimasi",
+  "total_biaya_yang_ditagihkan",
+  "pembayaran",
+  "biaya_estimasi_diserahkan_kepada",
+  "sb_form_cact",
+  "kebutuhan_ca",
+  "kebutuhan_lainnya_ca",
+  "rincian_aktualisasi_ca",
+  "selisih_pembayaran",
+  "grand_total_ca",
+  "selisih_lebih_bca_ppn_non_ppn",
+  "selisih_lebih_kas_ppn_non_ppn",
+  "lebih_bayar_bca_ppn_non_ppn",
+  "lebih_bayar_kas_ppn_non_ppn",
+  "kurang_bayar_bca_ppn_non_ppn",
+  "kurang_bayar_kas_ppn_non_ppn",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "tipe_dokumen",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Tipe Dokumen",
+   "options": "SPK\nPenjadwalan Instalasi & Servis\nLaporan Servis\nForm CE\nForm CA"
+  },
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Customer",
+   "options": "Customer"
+  },
+  {
+   "fieldname": "sales_order",
+   "fieldtype": "Table",
+   "label": "Sales Order",
+   "options": "SO Form Teknisi"
+  },
+  {
+   "fieldname": "item_code",
+   "fieldtype": "Link",
+   "label": "Item Code",
+   "options": "Item"
+  },
+  {
+   "fieldname": "item_name",
+   "fieldtype": "Data",
+   "label": "Item Name"
+  },
+  {
+   "fieldname": "alamat_kota",
+   "fieldtype": "Small Text",
+   "label": "Alamat Kota",
+   "read_only": 1
+  },
+  {
+   "fieldname": "jadwal_instalasi_training",
+   "fieldtype": "Date",
+   "label": "Jadwal Instalasi / Training"
+  },
+  {
+   "fieldname": "tanggal_training_selesai",
+   "fieldtype": "Date",
+   "label": "Tanggal Realisasi Instalasi & Training"
+  },
+  {
+   "fieldname": "penanggung_jawab_instalasi",
+   "fieldtype": "Data",
+   "label": "Penanggung Jawab Instalasi"
+  },
+  {
+   "fieldname": "hasil_instalasi_training",
+   "fieldtype": "Small Text",
+   "label": "Hasil Instalasi Training"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "follow_up_spk",
+   "fieldtype": "Table",
+   "label": "Follow Up SPK",
+   "options": "Follow Up SPK"
+  },
+  {
+   "depends_on": "eval:doc.tipe_dokumen == \"SPK\";",
+   "fieldname": "sb_spk",
+   "fieldtype": "Section Break"
+  },
+  {
+   "depends_on": "eval:doc.tipe_dokumen == \"Penjadwalan Instalasi & Servis\";",
+   "fieldname": "sb_servis",
+   "fieldtype": "Section Break"
+  },
+  {
+   "depends_on": "eval:doc.tipe_dokumen == \"Form CE\"",
+   "fieldname": "kebutuhan",
+   "fieldtype": "Select",
+   "label": "Kebutuhan",
+   "options": "\nServis & Maintenance\nInstalasi & Training\nTraining\nService Kantor\nService Supplier\nTraining Online\nLainnya"
+  },
+  {
+   "fieldname": "tanggal_penjadwalan_awal",
+   "fieldtype": "Date",
+   "label": "Tanggal Penjadwalan Awal"
+  },
+  {
+   "depends_on": "eval:doc.tipe_dokumen == \"Penjadwalan Instalasi & Servis\"",
+   "fieldname": "tanggal_penjadwalan_akhir",
+   "fieldtype": "Date",
+   "label": "Tanggal Penjadwalan Akhir"
+  },
+  {
+   "fieldname": "nama_teknisi",
+   "fieldtype": "Data",
+   "label": "Nama Teknisi"
+  },
+  {
+   "fieldname": "done",
+   "fieldtype": "Select",
+   "label": "Done",
+   "options": "\nYa\nCancel"
+  },
+  {
+   "fieldname": "keterangan_servis",
+   "fieldtype": "Select",
+   "label": "Keterangan Servis",
+   "options": "\nInstalasi\nServis"
+  },
+  {
+   "depends_on": "eval:doc.tipe_dokumen == \"Laporan Servis\"",
+   "fieldname": "sb_laporan_servis",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "tanggal_servis",
+   "fieldtype": "Date",
+   "label": "Tanggal Servis"
+  },
+  {
+   "fieldname": "nama_teknisi_servis",
+   "fieldtype": "Link",
+   "label": "Nama Teknisi",
+   "options": "Employee"
+  },
+  {
+   "fieldname": "tindakan",
+   "fieldtype": "Data",
+   "label": "Jenis Tindakan"
+  },
+  {
+   "fieldname": "nominal",
+   "fieldtype": "Currency",
+   "label": "Biaya Service"
+  },
+  {
+   "fieldname": "komisi",
+   "fieldtype": "Currency",
+   "hidden": 1,
+   "label": "Komisi",
+   "read_only": 1
+  },
+  {
+   "fieldname": "transport",
+   "fieldtype": "Select",
+   "label": "Transport",
+   "options": "\nBandara\nStasiun\nTerminal"
+  },
+  {
+   "fieldname": "total_biaya",
+   "fieldtype": "Currency",
+   "label": "Total Biaya",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.tipe_dokumen == \"Form CA\"",
+   "fieldname": "selisih_lebih_bca_ppn_non_ppn",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Selisih Lebih BCA PPN Non PPN"
+  },
+  {
+   "depends_on": "eval:doc.tipe_dokumen == \"Form CA\"",
+   "fieldname": "selisih_lebih_kas_ppn_non_ppn",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Selisih Lebih Kas PPN Non PPN"
+  },
+  {
+   "depends_on": "eval:doc.tipe_dokumen == \"Form CA\"",
+   "fieldname": "lebih_bayar_bca_ppn_non_ppn",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Lebih Bayar BCA PPN Non PPN"
+  },
+  {
+   "depends_on": "eval:doc.tipe_dokumen == \"Form CA\"",
+   "fieldname": "lebih_bayar_kas_ppn_non_ppn",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Lebih Bayar Kas PPN Non PPN"
+  },
+  {
+   "depends_on": "eval:doc.tipe_dokumen == \"Form CA\"",
+   "fieldname": "kurang_bayar_bca_ppn_non_ppn",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Kurang Bayar BCA PPN Non PPN"
+  },
+  {
+   "depends_on": "eval:doc.tipe_dokumen == \"Form CA\"",
+   "fieldname": "kurang_bayar_kas_ppn_non_ppn",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Kurang Bayar Kas PPN Non PPN"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Form Teknisi",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "description": "Bulan dan Tahun mengikuti tanggal hari ini",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Naming Series",
+   "options": "######\nFT-.######\n#####/SPK/DEPRINTZ/#MMM#/#YYYY#",
+   "read_only": 1
+  },
+  {
+   "fieldname": "naming",
+   "fieldtype": "Data",
+   "hidden": 1,
+   "label": "Naming"
+  },
+  {
+   "fieldname": "posting_date",
+   "fieldtype": "Date",
+   "label": "Posting Date"
+  },
+  {
+   "depends_on": "eval:doc.tipe_dokumen == \"SPK\"",
+   "fieldname": "penjadwalan_instalasi_dan_servis",
+   "fieldtype": "Link",
+   "label": "Penjadwalan Instalasi & Servis",
+   "options": "Form Teknisi"
+  },
+  {
+   "fieldname": "get_penjadwalan",
+   "fieldtype": "Button",
+   "label": "Get Penjadwalan",
+   "options": "get_penjadwalan"
+  },
+  {
+   "depends_on": "eval:doc.tipe_dokumen == \"Laporan Servis\"",
+   "fieldname": "spk",
+   "fieldtype": "Link",
+   "label": "SPK",
+   "options": "Form Teknisi"
+  },
+  {
+   "depends_on": "eval:doc.tipe_dokumen == \"SPK\"",
+   "description": "akan merubah naming series juga",
+   "fieldname": "tipe_spk",
+   "fieldtype": "Select",
+   "label": "Tipe SPK",
+   "options": "Internal\nCustomer"
+  },
+  {
+   "fieldname": "cb_00",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "customer.customer_name",
+   "fieldname": "customer_name",
+   "fieldtype": "Data",
+   "label": "Customer Name"
+  },
+  {
+   "depends_on": "eval:doc.jenis_pengerjaan == \"Lainnya\"",
+   "fieldname": "lainnya",
+   "fieldtype": "Data",
+   "label": "Lainnya"
+  },
+  {
+   "depends_on": "eval:doc.tipe_dokumen == \"Form CE\" || doc.tipe_dokumen == \"Form CR\"",
+   "fieldname": "sb_form_ce",
+   "fieldtype": "Section Break"
+  },
+  {
+   "depends_on": "eval:doc.kebutuhan_ca == \"Lainnya\"",
+   "fieldname": "lainnya_2",
+   "fieldtype": "Data",
+   "label": "Lainnya"
+  },
+  {
+   "fieldname": "total_biaya_ditambah_estimasi",
+   "fieldtype": "Int",
+   "label": "Total Biaya ditambah Estimasi"
+  },
+  {
+   "fieldname": "total_biaya_yang_ditagihkan",
+   "fieldtype": "Int",
+   "label": "Total Biaya yang ditagihkan"
+  },
+  {
+   "fieldname": "pembayaran",
+   "fieldtype": "Select",
+   "label": "Pembayaran",
+   "options": "\nPPN\nNon-PPN"
+  },
+  {
+   "fieldname": "biaya_estimasi_diserahkan_kepada",
+   "fieldtype": "Table",
+   "label": "Biaya Estimasi diserahkan kepada",
+   "options": "Biaya Estimasi Tabel"
+  },
+  {
+   "depends_on": "eval:doc.tipe_dokumen == \"Form CA\"",
+   "fieldname": "sb_form_cact",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "komisi_teknisi",
+   "fieldtype": "Currency",
+   "label": "Komisi Teknisi",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "komisi_perusahaan",
+   "fieldtype": "Currency",
+   "label": "Komisi Perusahaan",
+   "read_only": 1
+  },
+  {
+   "fieldname": "kebutuhan_ca",
+   "fieldtype": "Select",
+   "label": "Kebutuhan",
+   "options": "Service & Maintenance\nInstalasi & Training\nTraining\nLainnya"
+  },
+  {
+   "depends_on": "eval:doc.kebutuhan == \"Lainnya\"",
+   "fieldname": "kebutuhan_lainnya",
+   "fieldtype": "Data",
+   "label": "Kebutuhan Lainnya",
+   "translatable": 1
+  },
+  {
+   "depends_on": "eval:doc.kebutuhan_ce == \"Lainnya\"",
+   "fieldname": "keterangan_ce",
+   "fieldtype": "Small Text",
+   "label": "Keterangan",
+   "translatable": 1
+  },
+  {
+   "depends_on": "eval:doc.tipe_dokumen == \"SPK\"",
+   "fieldname": "kebutuhan_sparepart",
+   "fieldtype": "Table",
+   "label": "Kebutuhan Sparepart",
+   "options": "Kebutuhan Sparepart"
+  },
+  {
+   "depends_on": "eval:doc.tipe_dokumen == \"SPK\"",
+   "fieldname": "jenis_mesin",
+   "fieldtype": "Table",
+   "label": "Jenis Mesin",
+   "options": "Jenis Mesin"
+  },
+  {
+   "depends_on": "eval:doc.tipe_dokumen == \"SPK\"",
+   "fieldname": "packing_list",
+   "fieldtype": "Table",
+   "label": "Packing List",
+   "options": "Packing List"
+  },
+  {
+   "depends_on": "eval:doc.tipe_dokumen == \"SPK\"",
+   "fieldname": "log_harian_teknisi",
+   "fieldtype": "Table",
+   "label": "Log Harian Teknisi",
+   "options": "Log Harian Teknisi"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "tanggal_awal_1",
+   "fieldtype": "Date",
+   "label": "Tanggal Awal"
+  },
+  {
+   "allow_on_submit": 1,
+   "fieldname": "tanggal_akhir_1",
+   "fieldtype": "Date",
+   "label": "Tanggal Akhir"
+  },
+  {
+   "fieldname": "jenis_pengerjaan",
+   "fieldtype": "Select",
+   "label": "Jenis Pengerjaan",
+   "options": "\nServis & Maintenance\nInstalasi & Training\nTraining\nService Kantor\nService Supplier\nTraining Online\nLainnya"
+  },
+  {
+   "depends_on": "eval:doc.tipe_dokumen == \"SPK\"",
+   "fieldname": "biaya_sparepart_tindakan",
+   "fieldtype": "Table",
+   "label": "Biaya Sparepart & Tindakan",
+   "options": "Biaya Sparepart dan Tindakan"
+  },
+  {
+   "depends_on": "eval:doc.tipe_dokumen != \"Form CE\"",
+   "fieldname": "troubleshooting",
+   "fieldtype": "Small Text",
+   "label": "Troubleshooting"
+  },
+  {
+   "depends_on": "val:doc.kebutuhan_ca == \"Lainnya\"",
+   "fieldname": "kebutuhan_lainnya_ca",
+   "fieldtype": "Data",
+   "label": "Kebutuhan Lainnya",
+   "translatable": 1
+  },
+  {
+   "fieldname": "rincian_estimasi_ce",
+   "fieldtype": "Table",
+   "label": "Rincian Estimasi",
+   "options": "Rincian Pengeluaran Form Teknisi"
+  },
+  {
+   "fieldname": "rincian_aktualisasi_ca",
+   "fieldtype": "Table",
+   "label": "Rincian Aktual",
+   "options": "Rincian Pengeluaran Form Teknisi CA"
+  },
+  {
+   "fieldname": "selisih_pembayaran",
+   "fieldtype": "Data",
+   "label": "Selisih Pembayaran",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "grand_total_ca",
+   "fieldtype": "Currency",
+   "label": "Grand Total",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval:doc.tipe_dokumen == \"Form CA\"",
+   "fieldname": "form_ce",
+   "fieldtype": "Link",
+   "label": "Form CE",
+   "options": "Form Teknisi"
+  },
+  {
+   "depends_on": "eval:doc.tipe_dokumen == \"Form CA\"",
+   "fieldname": "get_data_ce",
+   "fieldtype": "Button",
+   "label": "Get Data CE",
+   "options": "get_data_ce"
+  },
+  {
+   "depends_on": "eval:doc.tipe_dokumen == \"Laporan Servis\"",
+   "fieldname": "telepon",
+   "fieldtype": "Data",
+   "label": "Telepon"
+  },
+  {
+   "depends_on": "eval:doc.tipe_dokumen == \"Form CE\"",
+   "fieldname": "keterangan_form_ce",
+   "fieldtype": "Small Text",
+   "label": "Keterangan"
+  },
+  {
+   "depends_on": "eval:doc.tipe_dokumen == \"Penjadwalan Instalasi & Servis\"",
+   "fieldname": "keterangan_penjadwalan",
+   "fieldtype": "Small Text",
+   "label": "Keterangan"
+  },
+  {
+   "fieldname": "jenis_pengerjaan_servis",
+   "fieldtype": "Select",
+   "label": "Jenis Pengerjaan",
+   "options": "\nServis & Maintenance\nInstalasi & Training\nTraining\nService Kantor\nService Supplier\nTraining Online\nLainnya"
+  },
+  {
+   "depends_on": "eval:doc.jenis_pengerjaan_servis == \"Lainnya\"",
+   "fieldname": "lainnya_servis",
+   "fieldtype": "Data",
+   "label": "Lainnya"
+  }
+ ],
+ "is_submittable": 1,
+ "modified": "2022-07-18 16:41:56.920079",
+ "modified_by": "Administrator",
+ "module": "Addons",
+ "name": "Form Teknisi",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}
