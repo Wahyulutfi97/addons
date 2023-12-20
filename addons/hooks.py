@@ -104,21 +104,41 @@ doctype_js = {"Customer" : "public/js/customer.js",
 
 doc_events = {
 	"Customer": {
-		"autoname": "addons.custom_method_hooks.autoname_customer_and_serial"
+		# "autoname": "addons.custom_method_hooks.autoname_customer_and_serial"
+		"autoname": "addons.custom_method.customer.autoname_customer_and_serial"
 	},
 	"Sales Person": {
 		"validate": "addons.custom_method_hooks.check_enabled_sales_person"
 	},
 	"Sales Order": {
-		"validate": ["addons.custom_method_hooks.check_biaya_order"]
+		"validate": ["addons.custom_method_hooks.check_biaya_order"],
+		"before_insert" : "addons.custom_method_hooks.pinv_tax",
+        # "before_update_after_submit": "rpk.doctype_function.sales_order.validate_payment_schedule_so"	
 	},
 	"Lead":{
 		"autoname": "addons.custom_method_hooks.autoname_lead"
 	},
 	"Purchase Order":{
 		"validate": "addons.custom_method_hooks.replace_supplier_name",
-		"on_update_after_submit": "addons.custom_method_hooks.replace_supplier_name"
+		"on_update_after_submit": "addons.custom_method_hooks.replace_supplier_name",
+		"before_insert" : "addons.custom_method_hooks.pinv_tax"
 	},
+	"Purchase Invoice":{
+		"before_insert" : "addons.custom_method_hooks.pinv_tax"
+	},
+	"Stock Entry":{
+		"before_insert" : "addons.custom_method_hooks.pinv_tax"
+	},
+	"Purchase Receipt":{
+		"before_insert" : "addons.custom_method_hooks.pinv_tax"
+	},
+	"Sales Invoice":{
+		"before_insert" : "addons.custom_method_hooks.pinv_tax"
+	},
+	"Delivery Note":{
+		"before_insert" : "addons.custom_method_hooks.pinv_tax"
+	},
+	
 	"Employee":{
 		"before_insert":"addons.custom_method_hooks.auto_employee_number"
 	}
@@ -134,9 +154,9 @@ scheduler_events = {
 	"daily": [
 		"addons.custom_method_hooks.auto_email_pinv_due_date"
 	],
-# 	"hourly": [
-# 		"addons.tasks.hourly"
-# 	],
+	"hourly": [
+		"addons.custom_method_hooks.isi_tax_status"
+	],
 # 	"weekly": [
 # 		"addons.tasks.weekly"
 # 	]
@@ -172,7 +192,14 @@ scheduler_events = {
 # Overriding Methods
 # ------------------------------
 override_whitelisted_methods = {
- 	"erpnext.accounts.doctype.payment_entry.payment_entry.get_payment_entry": "addons.custom_method.payment_entry.custom_get_payment_entry"
+ 	"erpnext.accounts.doctype.payment_entry.payment_entry.get_payment_entry": "addons.custom_method.payment_entry.custom_get_payment_entry",
+ 	"erpnext.selling.doctype.sales_order.sales_order.make_delivery_note": "addons.custom_method.sales_order.make_delivery_note_2",
+ 	"erpnext.selling.doctype.sales_order.sales_order.make_sales_invoice": "addons.custom_method.sales_order.make_sales_invoice_2",
+ 	"erpnext.stock.doctype.delivery_note.delivery_note.make_sales_invoice": "addons.custom_method.delivery_note.make_sales_invoice_2",
+ 	"erpnext.buying.doctype.purchase_order.purchase_order.make_purchase_receipt": "addons.custom_method.purchase_order.make_purchase_receipt_2",
+ 	"erpnext.buying.doctype.purchase_order.purchase_order.make_purchase_invoice": "addons.custom_method.purchase_order.make_purchase_invoice_2",
+ 	"erpnext.stock.doctype.purchase_receipt.purchase_receipt.make_purchase_invoice": "addons.custom_method.purchase_receipt.make_purchase_invoice_2",
+ 	"erpnext.selling.doctype.sales_order.sales_order.make_purchase_order": "addons.custom_method.sales_order.make_purchase_order_2", 	
 }
 
 # each overriding function accepts a `data` argument;

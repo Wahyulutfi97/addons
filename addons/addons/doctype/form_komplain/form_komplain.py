@@ -7,6 +7,7 @@ import frappe
 from frappe.model.document import Document
 
 class FormKomplain(Document):
+	@frappe.whitelist()
 	def get_data_so(self):
 		for row in self.sales_order:
 			list_item = frappe.db.sql(""" SELECT item_code, item_name, qty, uom, rate 

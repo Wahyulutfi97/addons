@@ -7,6 +7,7 @@ import frappe
 from frappe.model.document import Document
 
 class CustomerCare(Document):
+	@frappe.whitelist()
 	def get_data_so(self):
 		if self.sales_order_table:
 			for row in self.sales_order_table:

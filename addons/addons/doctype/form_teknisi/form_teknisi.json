@@ -1,4 +1,5 @@
 {
+ "actions": [],
  "autoname": "naming_series:",
  "creation": "2020-05-13 12:19:38.995633",
  "doctype": "DocType",
@@ -561,7 +562,8 @@
   }
  ],
  "is_submittable": 1,
- "modified": "2022-07-18 16:41:56.920079",
+ "links": [],
+ "modified": "2023-05-12 14:07:32.546478",
  "modified_by": "Administrator",
  "module": "Addons",
  "name": "Form Teknisi",

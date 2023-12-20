@@ -22,12 +22,81 @@ cur_frm.cscript.custom_refresh = function(doc){
 		}
 	}
 
+	if(doc.jenis_transaksi == "PPN"){
+
+	}
+
 }
 
 frappe.ui.form.on('Sales Order', {
+	setup(frm){
+
+		// if(frm.doc.jenis_transaksi == "PPN"){
+		// 	if(frm.doc.docstatus == 0 && !frm.doc.taxes_and_charges){
+		// 		frm.call({
+		// 			method: "erpnext.controllers.accounts_controller.get_taxes_and_charges",
+		// 			args: {
+		// 				"master_doctype": frappe.meta.get_docfield(frm.doc.doctype, "taxes_and_charges",frm.doc.name).options,
+		// 				"master_name": "PPN 11% - D"
+		// 			},
+		// 			callback: function(r) {
+		// 				if(!r.exc) {
+		// 					for (let tax of r.message) {
+		// 						frm.add_child("taxes", tax);
+		// 					}
+		// 					// if(frm.doc.shipping_rule && frm.doc.taxes) {
+	
+		// 					// 	refresh_field("taxes");
+		// 					// } else {
+		// 					// 	frm.set_value("taxes", r.message);
+		// 					// 	frm.cscript.calculate_taxes_and_totals();
+		// 					// }
+		// 				}
+		// 			}
+		// 		});
+		// 	}
+		// }
+	},
+	refresh(frm) {
+		if(frm.doc.jenis_transaksi == "PPN"){
+			frm.set_value("naming_series","SO-P-.YY.MM.DD.-.#####");
+		}else{
+			frm.set_value("naming_series","SO-NP-.YY.MM.DD.-.#####");
+		}
+		// frm.remove_custom_button("Sales Order","Update Items");
+		cur_frm.remove_custom_button(__('Update Items'));
+		if(frm.doc.docstatus === 1 && frm.doc.status !== 'Closed'){
+			// && flt(frm.doc.per_delivered, 6) < 100 && flt(frm.doc.per_billed, 6) < 100) {
+			// frm.add_custom_button(__('Update Items'), () => {
+			// 	erpnext.utils.update_child_items({
+			// 		frm: frm,
+			// 		child_docname: "items",
+			// 		child_doctype: "Sales Order Detail",
+			// 		cannot_add_row: false,
+			// 	})
+			// });
+		}
+        // your code here
+        // if(frm.doc.docstatus == 1 && frm.doc.per_billed == 0 && frm.doc.per_delivered == 0)
+        // {
+        //     frappe.call({
+        //         method: "addons.custom_method.sales_order.allow_payment",
+        //         args: {
+        //             "dt": frm.doc.doctype,
+        //             "dn": frm.doc.name
+        //         },
+        //         callback: function(r) {
+        //             frm.set_df_property('payment_schedule', 'allow_on_submit', r.message);
+        //         }
+        //     });
+        // }
+    },
 	jenis_transaksi: function(frm){
 	    if (frm.doc.jenis_transaksi == "PPN"){
-	        frm.set_value("taxes_and_charges","PPN 11% - D");
+	        frm.set_value("taxes_and_charges", "PPN 11% - D");
+
+
+
 	        frm.set_value("tax_status","Tax")
 	        frm.set_value("naming_series","SO-P-.YY.MM.DD.-.#####");
 

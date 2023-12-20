@@ -162,35 +162,35 @@ cur_frm.cscript.custom_tipe_tiket = function(doc,cdt,cdn){
 
 cur_frm.add_fetch("item_code","item_name","item_name")
 
-cur_frm.cscript.custom_customer = function(doc){
-	if(doc.customer){
-		frappe.call({
-			method: "addons.addons.doctype.form_teknisi.form_teknisi.get_customer_details",
-			args: {
-				customer: doc.customer
-			},
-			callback: function(r) {
-				doc.alamat_kota =  r["message"][0][0]
-				refresh_field("alamat_kota")
-			}
-		});
-	}
-}
+// cur_frm.cscript.custom_customer = function(doc){
+// 	if(doc.customer){
+// 		frappe.call({
+// 			method: "addons.addons.doctype.form_teknisi.form_teknisi.get_customer_details",
+// 			args: {
+// 				customer: doc.customer
+// 			},
+// 			callback: function(r) {
+// 				doc.alamat_kota =  r["message"][0][0]
+// 				refresh_field("alamat_kota")
+// 			}
+// 		});
+// 	}
+// }
 
 
 
-cur_frm.add_fetch("penjadwalan_instalasi_dan_servis","troubleshoot","troubleshoot")
+// cur_frm.add_fetch("penjadwalan_instalasi_dan_servis","troubleshoot","troubleshoot")
 cur_frm.add_fetch("penjadwalan_instalasi_dan_servis","customer","customer")
 cur_frm.add_fetch("penjadwalan_instalasi_dan_servis","item_code","item_code")
 cur_frm.add_fetch("penjadwalan_instalasi_dan_servis","item_name","item_name")
 cur_frm.add_fetch("penjadwalan_instalasi_dan_servis","posting_date","jadwal_instalasi_training")
-cur_frm.add_fetch("penjadwalan_instalasi_dan_servis","tanggal_penjadwalan_awal_1","tanggal_penjadwalan_awal")
+// cur_frm.add_fetch("penjadwalan_instalasi_dan_servis","tanggal_penjadwalan_awal_1","tanggal_penjadwalan_awal")
 cur_frm.add_fetch("penjadwalan_instalasi_dan_servis","hasil_instalasi_training","keterangan")
 cur_frm.add_fetch("penjadwalan_instalasi_dan_servis","nama_teknisi","penanggung_jawab_instalasi")
 cur_frm.add_fetch("spk","penanggung_jawab_instalasi","nama_teknisi_servis")
 cur_frm.add_fetch("spk","customer","customer")
 cur_frm.add_fetch("spk","item_code","item_code")
 cur_frm.add_fetch("spk","item_name","item_name")
-cur_frm.add_fetch("spk","troubleshoot","troubleshoot")
+// cur_frm.add_fetch("spk","troubleshoot","troubleshoot")
 cur_frm.add_fetch("spk","posting_date","tanggal_servis")
-cur_frm.add_fetch("spk","jenis","tindakan")
+// cur_frm.add_fetch("spk","jenis","tindakan")

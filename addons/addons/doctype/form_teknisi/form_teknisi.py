@@ -8,6 +8,19 @@ from frappe.model.document import Document
 from datetime import datetime
 
 class FormTeknisi(Document):
+	def get_so_addresss(self):
+		alamat = ""
+		if self.sales_order:
+			print('masuk sini')
+			if len(self.sales_order) > 0:
+				print('masuk sini 2')
+				# for i in self.sales_order:
+				# 	alamat += frappe.get_doc("Sales Order",i.nomor_so).address_display or get_customer_details(self.customer)[0][0]
+				# 	print(alamat, ' --get_so_addresss')
+				alamat += frappe.get_doc("Sales Order",self.sales_order[0].nomor_so).address_display or get_customer_details(self.customer)[0][0]
+				print(alamat, ' --get_so_addresss')
+			self.alamat_kota = alamat
+
 	def autoname(self):
 		naming_series = self.naming_series
 		check_series = 1
@@ -63,8 +76,9 @@ class FormTeknisi(Document):
 		self.name = n
 		return n
 
-
+	@frappe.whitelist()
 	def get_penjadwalan(self):
+		# frappe.msgprint("get_penjadwalan")
 		if self.penjadwalan_instalasi_dan_servis :
 			get_pids = frappe.get_doc("Form Teknisi", self.penjadwalan_instalasi_dan_servis)
 			
@@ -75,15 +89,15 @@ class FormTeknisi(Document):
 			self.sales_order = get_pids.sales_order
 			self.hasil_instalasi_training = get_pids.keterangan
 
-
-	def get_data_spk(self):
+	@frappe.whitelist()
+	def get_data_spk(self):		
 		if self.spk :
 			get_pids = frappe.get_doc("Form Teknisi", self.spk)
 			
 			self.tabel_nama_teknisi = get_pids.tabel_nama_teknisi
 			self.sales_order = get_pids.sales_order
 
-
+	@frappe.whitelist()
 	def get_data_ce(self):
 		if self.form_ce :
 			# frappe.msgprint(self.form_ce)
@@ -116,6 +130,7 @@ class FormTeknisi(Document):
 
 
 	def validate(self):
+		self.get_so_addresss()
 		naming_series = self.naming_series
 		check_series = 1
 		series = naming_series
@@ -176,7 +191,7 @@ class FormTeknisi(Document):
 
 @frappe.whitelist()
 def get_customer_details(customer):
-	hasil = frappe.db.sql(""" SELECT CONCAT(tas.`address_line1`,", ", tas.`city`)
+	hasil = frappe.db.sql(""" SELECT CONCAT(tas.`address_line1`,", ", tas.`city`) as alamat
 		FROM `tabDynamic Link` tdl
 		JOIN `tabAddress` tas ON tas.name = tdl.`parent`
 		JOIN `tabCustomer` tc ON tc.name = tdl.`link_name`

@@ -1,7 +1,7 @@
 [
  {
   "docstatus": 0,
-  "doctype": "Custom Script",
+  "doctype": "Client Script",
   "dt": "Customer",
   "modified": "2020-07-14 11:40:19.514776",
   "name": "Customer-Client",
@@ -12,7 +12,7 @@
  },
  {
   "docstatus": 0,
-  "doctype": "Custom Script",
+  "doctype": "Client Script",
   "dt": "Sales Invoice",
   "modified": "2021-09-20 09:44:54.754006",
   "name": "Sales Invoice-Client",
@@ -23,7 +23,7 @@
  },
  {
   "docstatus": 0,
-  "doctype": "Custom Script",
+  "doctype": "Client Script",
   "dt": "Form Teknisi",
   "modified": "2020-11-27 15:30:35.603746",
   "name": "Form Teknisi-Client",
@@ -34,7 +34,7 @@
  },
  {
   "docstatus": 0,
-  "doctype": "Custom Script",
+  "doctype": "Client Script",
   "dt": "Lead",
   "modified": "2021-05-10 12:13:41.229436",
   "name": "Lead-Client",
@@ -45,7 +45,7 @@
  },
  {
   "docstatus": 0,
-  "doctype": "Custom Script",
+  "doctype": "Client Script",
   "dt": "Sales Order",
   "modified": "2021-09-15 15:12:06.324963",
   "name": "Sales Order-Client",
@@ -56,7 +56,7 @@
  },
  {
   "docstatus": 0,
-  "doctype": "Custom Script",
+  "doctype": "Client Script",
   "dt": "Journal Entry",
   "modified": "2021-09-09 12:43:10.527171",
   "name": "Journal Entry-Client",

@@ -16,7 +16,7 @@ from erpnext.stock.stock_balance import update_bin_qty, get_reserved_qty
 from frappe.desk.notifications import clear_doctype_notifications
 from frappe.contacts.doctype.address.address import get_company_address
 from erpnext.controllers.selling_controller import SellingController
-from frappe.automation.doctype.auto_repeat.auto_repeat import get_next_schedule_date
+# from frappe.automation.doctype.auto_repeat.auto_repeat import get_next_schedule_date
 from erpnext.selling.doctype.customer.customer import check_credit_limit
 from erpnext.selling.doctype.sales_order.sales_order import SalesOrder
 from erpnext.stock.doctype.item.item import get_item_defaults
@@ -26,6 +26,51 @@ from erpnext.accounts.doctype.sales_invoice.sales_invoice import validate_inter_
 	unlink_inter_company_doc
 
 from frappe.model.rename_doc import rename_doc
+
+@frappe.whitelist()
+def isi_tax_status():
+	gl_list = frappe.db.sql(""" SELECT name FROM `tabGL Entry` WHERE ((tax_status != "Tax" and tax_status != "Non Tax") or tax_status IS NULL) and voucher_type != "Period Closing Voucher" """)
+	for row in gl_list:
+		gl_doc = frappe.get_doc("GL Entry", row[0])
+		sumber = frappe.get_doc(gl_doc.voucher_type, gl_doc.voucher_no)
+		if gl_doc.voucher_type == "Sales Invoice":
+			if sumber.get("jenis_transaksi") == "Non PPN":
+				gl_doc.tax_status = "Non Tax"
+			else:
+				gl_doc.tax_status = "Tax"
+		else:
+			gl_doc.tax_status = sumber.get("tax_status")
+
+		print(gl_doc.name)
+		gl_doc.db_update()
+		frappe.db.commit()
+
+
+# if d.get("voucher_type"):
+		# 	if d.get("voucher_type") == "Sales Invoice":
+		# 		if frappe.get_doc(d["voucher_type"],d["voucher_no"]).get("jenis_transaksi") == "Non PPN":
+		# 			d["tax_status"] = "Non Tax"
+		# 		else:
+		# 			d["tax_status"] = "Tax"
+		# 	else:
+		# 		d["tax_status"] = frappe.get_doc(d["voucher_type"],d["voucher_no"]).get("tax_status")
+
+@frappe.whitelist()
+def delete_from_tab():
+	list_so = frappe.db.sql(""" SELECT name FROM `tabSales Order`
+	 WHERE jenis_transaksi = "Non PPN" and (docstatus = 0 or docstatus = 2) 
+	 ORDER BY name ASC""")
+	for row in list_so:
+		doc = frappe.get_doc("Sales Order", row[0])
+		doc.delete()
+		print(row[0])
+
+@frappe.whitelist()
+def pinv_tax(doc,method):
+	if doc.jenis_transaksi == "Non PPN":
+		doc.tax_status = "Non Tax"
+	else:
+		doc.tax_status = "Tax"
 
 @frappe.whitelist()
 def auto_employee_number(doc,method):
@@ -39,37 +84,38 @@ def replace_supplier_name(doc,method):
 
 
 @frappe.whitelist()
-def check_biaya_order(doc,method):	
-	if doc.jenis_transaksi == "Non PPN":
-		doc.taxes = []
-		doc.taxes_and_charges = ""
-		doc.calculate_taxes_and_totals()
-		doc.total_taxes = 0
+def check_biaya_order(doc,method):
+	if frappe.local.site == 'deprint13.digitalasiasolusindo.com':
+		if doc.jenis_transaksi == "Non PPN":
+			doc.taxes = []
+			doc.taxes_and_charges = ""
+			doc.calculate_taxes_and_totals()
+			doc.total_taxes = 0
 
-	for row in doc.biaya_order_item:
-		code = 0
-		for row_tax in doc.taxes:
-			if row_tax.item_name == row.item:
-				code = 1
+		for row in doc.biaya_order_item:
+			code = 0
+			for row_tax in doc.taxes:
+				if row_tax.item_name == row.item:
+					code = 1
 
-		if code == 0:
-			if row.item and row.biaya:
-				item_doc = frappe.get_doc("Item", row.item)
-				account = ""
-				if item_doc.biaya_account:
-					account = item_doc.biaya_account
-				else:
-					frappe.msgprint("Nilai Field Biaya Account di Item {} - {} masih kosong, jadi tidak akan masuk ke Taxes and Charges, bisa dicek kembali.".format(row.item,row.item_name))
+			if code == 0:
+				if row.item and row.biaya:
+					item_doc = frappe.get_doc("Item", row.item)
+					account = ""
+					if item_doc.biaya_account:
+						account = item_doc.biaya_account
+					else:
+						frappe.msgprint("Nilai Field Biaya Account di Item {} - {} masih kosong, jadi tidak akan masuk ke Taxes and Charges, bisa dicek kembali.".format(row.item,row.item_name))
 
-				if account:
-					baris_tax_baru = doc.append('taxes', {})
-					baris_tax_baru.charge_type = "Actual"
-					baris_tax_baru.account_head = account
-					baris_tax_baru.item_name = row.item
-					baris_tax_baru.tax_amount = row.biaya
-					baris_tax_baru.description = "Biaya Item"
+					if account:
+						baris_tax_baru = doc.append('taxes', {})
+						baris_tax_baru.charge_type = "Actual"
+						baris_tax_baru.account_head = account
+						baris_tax_baru.item_name = row.item
+						baris_tax_baru.tax_amount = row.biaya
+						baris_tax_baru.description = "Biaya Item"
 
-					doc.run_method("calculate_taxes_and_totals")
+						doc.run_method("calculate_taxes_and_totals")
 
 
 @frappe.whitelist()
@@ -152,8 +198,9 @@ def delete_item():
 
 @frappe.whitelist()
 def autoname_customer_and_serial(doc,method):
-	doc.name = doc.get_customer_name()
+	# doc.name = doc.get_customer_name()
 	doc.serial_customer = make_autoname("CUST-.YY.MM.DD.-.#####")
+	doc.name = doc.serial_customer
 
 @frappe.whitelist()
 def autoname_lead(doc,method):
@@ -248,6 +295,10 @@ def get_nama_teknisi(doctype, txt, searchfield, start, page_len, filters):
     """.format(txt, start, page_len))
 
 @frappe.whitelist()
+def exec_repair_gl_entry():
+	repair_gl_entry("Purchase Receipt","MAT-PRE-NP-2023-00820-1")
+
+@frappe.whitelist()
 def repair_gl_entry(doctype,docname):
 	
 	docu = frappe.get_doc(doctype, docname)	
@@ -258,3 +309,11 @@ def repair_gl_entry(doctype,docname):
 	docu.update_stock_ledger()
 	docu.make_gl_entries()
 	frappe.db.sql(""" UPDATE `tabSingles` SET VALUE = 0 WHERE `field` = "allow_negative_stock" """)
+
+
+@frappe.whitelist()
+def repair_gl_entry_non_stock(doctype,docname):
+	
+	docu = frappe.get_doc(doctype, docname)	
+	delete_gl = frappe.db.sql(""" DELETE FROM `tabGL Entry` WHERE voucher_no = "{}" """.format(docname))
+	docu.make_gl_entries()
