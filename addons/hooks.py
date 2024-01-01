@@ -11,19 +11,19 @@ app_color = "blue"
 app_email = "digitalasiasolusindo@gmail.com"
 app_license = "MIT"
 
-fixtures = [
-	{
-	"dt":"Custom Field", 
-	},
-	{"dt":"Property Setter", 
-	}
-	,
-	{"dt":"Custom Script", 
-	}
-	,
-	{"dt":"Print Format", 
-	}
-]
+# fixtures = [
+# 	{
+# 	"dt":"Custom Field", 
+# 	},
+# 	{"dt":"Property Setter", 
+# 	}
+# 	,
+# 	{"dt":"Client Script", 
+# 	}
+# 	,
+# 	{"dt":"Print Format", 
+# 	}
+# ]
 
 # Includes in <head>
 # ------------------
